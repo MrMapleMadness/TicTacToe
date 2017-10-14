@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * The main game class. This class controls the whole game and contains the
+ * main game loop. It creates the players and the board and runs the game.
+ */
 class Game {
 
     private Board board;
@@ -8,11 +12,20 @@ class Game {
     private Player player1;
     private Player player2;
 
+    /**
+     * The constructor of the game, this sets up the board and begins the
+     * main game loop.
+     */
     Game() {
         setNewGame();
         gameLoop();
     }
 
+    /**
+     * The main game loop, this will run until the players want to quit.
+     *
+     * <bold>NOTE:<bold/> This is not the individual game, this is multiple games.
+     */
     private void gameLoop() {
         while (!quit) {
             board.printBoard();
@@ -28,6 +41,10 @@ class Game {
         }
     }
 
+    /**
+     * This runs once a winner is detected, it congratulates the player and
+     * then asks if the players want to play again.
+     */
     private void winner() {
         Scanner sc = new Scanner(System.in);
         boolean done = false;
@@ -61,6 +78,9 @@ class Game {
         }
     }
 
+    /**
+     * Changes the player to the other player
+     */
     private void changePlayer() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
@@ -69,6 +89,11 @@ class Game {
         }
     }
 
+    /**
+     * This creates the initial environment for the game including
+     * setting up the board and players. This also controls who plays
+     * first.
+     */
     private void setNewGame() {
         board = new Board();
         player1 = new Player(Piece.X, "Crosses");
