@@ -35,7 +35,7 @@ are for me to refer to so that I know how I want to extend
 the program. I will also put them here and I will keep them
 here even when they are removed from the code.
 
-#####@ TODO: 14/10/2017 Improve hasWinner by using lambdas and streams
+**@ TODO: 14/10/2017 Improve hasWinner by using lambdas and streams**
  
 Massive Improvement already, changed the horizontal and vertical
 checks to streams. Made the code much more readable and shorter.
@@ -47,25 +47,25 @@ array and check for equality.
 I have now finished all the methods for creating the arrays and have
 implemented the streams to check the diagonals.
 
-######COMPLETE: 16/10/2017
+**COMPLETE: 16/10/2017**
  
-#####@ TODO: 14/10/2017 Improve hasWinner code by reducing the receptiveness of the loops
+**@ TODO: 14/10/2017 Improve hasWinner code by reducing the receptiveness of the loops**
  
 Done! Took loops out and moved them to helper methods, these methods
 use loops much less than previously. All they do is create arrays so
 that the streams can iterate over them.
 
-######COMPLETE: 16/10/2017
+**COMPLETE: 16/10/2017**
  
-#####@ TODO: 16/10/2017 Make hasWinner one return statement
+**@ TODO: 16/10/2017 Make hasWinner one return statement**
  
 This is a difficult decision, I like to do things in one line, I find
 that code done in one displays a level of polish that a lot of programmers
 don't care about. As Blaise Pascal said - "If I had more time I would have
 written a shorter letter."
 
-#####@ TODO: 14/10/2017 Make players more robust so that players can have custom names
+**@ TODO: 14/10/2017 Make players more robust so that players can have custom names**
 
-#####@ TODO: 14/10/2017 Improve generateCleanBoard using streams
+**@ TODO: 14/10/2017 Improve generateCleanBoard using streams**
 
-#####@ TODO: 14/10/2017 Make printBoard a graphical interface
+**@ TODO: 14/10/2017 Make printBoard a graphical interface**
