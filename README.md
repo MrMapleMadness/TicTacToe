@@ -47,7 +47,7 @@ array and check for equality.
 I have now finished all the methods for creating the arrays and have
 implemented the streams to check the diagonals.
 
-**COMPLETE: 16/10/2017**
+*COMPLETE: 16/10/2017*
  
 **@ TODO: 14/10/2017 Improve hasWinner code by reducing the receptiveness of the loops**
  
@@ -55,7 +55,7 @@ Done! Took loops out and moved them to helper methods, these methods
 use loops much less than previously. All they do is create arrays so
 that the streams can iterate over them.
 
-**COMPLETE: 16/10/2017**
+*COMPLETE: 16/10/2017*
  
 **@ TODO: 16/10/2017 Make hasWinner one return statement**
  
