@@ -114,26 +114,14 @@ class Board {
      * equality using a stream.
      *
      * @return If someone has won the game
-     *
-     * @ TODO: 16/10/2017 Make hasWinner one return statement
-     *          This is a difficult decision, I like to do things in one line, I find
-     *          that code done in one displays a level of polish that a lot of programmers
-     *          don't care about. As Blaise Pascal said - "If I had more time I would have
-     *          written a shorter letter."
      */
     boolean hasWinner() {
         Piece piece = tiles[lastMove.x][lastMove.y];
+        return Arrays.stream(tiles[lastMove.x]).allMatch(piece::equals)
+                || Arrays.stream(getTileColumn(lastMove.y)).allMatch(piece::equals)
+                || Arrays.stream(getDiagonalOne()).allMatch(piece::equals)
+                || Arrays.stream(getDiagonalTwo()).allMatch(piece::equals);
 
-        if (Arrays.stream(tiles[lastMove.x]).allMatch(piece::equals))
-            return true;
-
-        if (Arrays.stream(getTileColumn(lastMove.y)).allMatch(piece::equals))
-            return true;
-
-        if (Arrays.stream(getDiagonalOne()).allMatch(piece::equals))
-            return true;
-
-        return Arrays.stream(getDiagonalTwo()).allMatch(piece::equals);
     }
 
     /**

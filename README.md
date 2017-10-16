@@ -61,8 +61,12 @@ that the streams can iterate over them.
  
 This is a difficult decision, I like to do things in one line, I find
 that code done in one displays a level of polish that a lot of programmers
-don't care about. As Blaise Pascal said - "If I had more time I would have
-written a shorter letter."
+don't care about. However, the code often becomes less readable when 
+it's so condensed. Blaise Pascal said - "If I had more time I would have
+written a shorter letter". In the end I decided to do one return 
+statement, it's shorter and removes lines from the code.
+
+*COMPLETE: 16/10/2017*
 
 **@ TODO: 14/10/2017 Make players more robust so that players can have custom names**
 
