@@ -1,7 +1,7 @@
 public enum Piece {
-    BLANK (" "),
-    X ("X"),
-    O ("O");
+    BLANK(" "),
+    X("X"),
+    O("O");
 
     private final String pieceCode;
 
@@ -10,7 +10,7 @@ public enum Piece {
      *
      * @param pieceCode The real wold representation of the piece
      */
-    Piece(String pieceCode){
+    Piece(String pieceCode) {
         this.pieceCode = pieceCode;
     }
 
@@ -29,7 +29,7 @@ public enum Piece {
      * @param piece The piece to compare
      * @return If the pieces are equivalent
      */
-    public boolean equals(Piece piece){
+    public boolean equals(Piece piece) {
         return getPieceCode().equals(piece.getPieceCode());
     }
 }

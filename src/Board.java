@@ -10,8 +10,8 @@ import java.util.Scanner;
  */
 class Board {
 
-    private Piece[][] tiles;
     private static final int DIMENSIONS = 3;
+    private Piece[][] tiles;
     private Point lastMove;
 
     /**
@@ -81,7 +81,7 @@ class Board {
 
     /**
      * Cleans the board of all pieces by setting the blank piece.
-     * <p>
+     *
      * @ TODO: 14/10/2017 Improve generateCleanBoard using streams
      */
     private void generateCleanBoard() {
@@ -121,7 +121,6 @@ class Board {
                 || Arrays.stream(getTileColumn(lastMove.y)).allMatch(piece::equals)
                 || Arrays.stream(getDiagonalOne()).allMatch(piece::equals)
                 || Arrays.stream(getDiagonalTwo()).allMatch(piece::equals);
-
     }
 
     /**
@@ -145,7 +144,7 @@ class Board {
      * @return An array from tiles containing the top left to bottom right
      * diagonal pieces
      */
-    private Piece[] getDiagonalOne(){
+    private Piece[] getDiagonalOne() {
         Piece[] temp = new Piece[DIMENSIONS];
         for (int i = 0; i < DIMENSIONS; i++) {
             temp[i] = tiles[i][i];
@@ -160,7 +159,7 @@ class Board {
      * @return An array from tiles containing the top right to bottom left
      * diagonal pieces
      */
-    private Piece[] getDiagonalTwo(){
+    private Piece[] getDiagonalTwo() {
         Piece[] temp = new Piece[DIMENSIONS];
         int j = 0;
         for (int i = DIMENSIONS - 1; i > 0; i--) {

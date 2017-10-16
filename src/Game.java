@@ -23,13 +23,13 @@ class Game {
 
     /**
      * The main game loop, this will run until the players want to quit.
-     *
+     * <p>
      * <bold>NOTE:<bold/> This is not the individual game, this is multiple games.
      */
     private void gameLoop() {
         while (!quit) {
             board.printBoard();
-
+            System.out.print(currentPlayer.getName() + " ");
             board.setTile(board.getInput(), currentPlayer.getPiece());
 
             if (board.hasWinner()) {
@@ -48,8 +48,11 @@ class Game {
     private void winner() {
         Scanner sc = new Scanner(System.in);
         boolean done = false;
+        currentPlayer.winsGame();
 
         System.out.println("Congratulations " + currentPlayer.getName() + "!");
+        System.out.print(player1.getName() + ": " + player1.getScore() + " | ");
+        System.out.println(player2.getName() + ": " + player2.getScore());
         System.out.println("Would you like to play again?");
 
         while (!done) {
@@ -64,7 +67,7 @@ class Game {
 
             switch (input) {
                 case "y":
-                    setNewGame();
+                    board = new Board();
                     done = true;
                     break;
                 case "n":

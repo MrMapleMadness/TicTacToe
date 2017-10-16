@@ -70,6 +70,12 @@ statement, it's shorter and removes lines from the code.
 
 **@ TODO: 14/10/2017 Make players more robust so that players can have custom names**
 
+Players now choose their own names in the game. I also decided to add
+a scoring system to the game so players know how many games they have
+won.
+
+*COMPLETE: 16/10/2017
+
 **@ TODO: 14/10/2017 Improve generateCleanBoard using streams**
 
 **@ TODO: 14/10/2017 Make printBoard a graphical interface**
