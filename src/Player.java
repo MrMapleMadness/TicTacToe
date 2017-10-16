@@ -32,4 +32,12 @@ class Player {
     String getName() {
         return name;
     }
+
+    /**
+     * Sets the name of the player.
+     * @param name The name of the player to set
+     */
+    void setName(String name) {
+        this.name = name;
+    }
 }

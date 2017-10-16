@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,7 +27,7 @@ class Board {
      * Get's input from the player. This method should be able to be
      * changed to any kind of input as long as it returns a valid point on the board.
      *
-     * @return  A valid point on the board
+     * @return A valid point on the board
      */
     Point getInput() {
         boolean done = false;
@@ -80,8 +81,8 @@ class Board {
 
     /**
      * Cleans the board of all pieces by setting the blank piece.
-     *
-     * TODO: 14/10/2017 Improve this using streams
+     * <p>
+     * @ TODO: 14/10/2017 Improve generateCleanBoard using streams
      */
     private void generateCleanBoard() {
         for (int i = 0; i < DIMENSIONS; i++) {
@@ -95,7 +96,7 @@ class Board {
      * Prints the graphical representation of the board.
      * This could be changed to any type of GUI.
      *
-     * @ TODO: 14/10/2017 Make this a graphical interface
+     * @ TODO: 14/10/2017 Make printBoard a graphical interface
      */
     void printBoard() {
         System.out.println("-------------");
@@ -108,100 +109,76 @@ class Board {
     }
 
     /**
-     * Checks to see if anyone has won the game.
-     *
-     * @ TODO: 14/10/2017 Improve this method using lambdas and streams
-     * @ TODO: 14/10/2017 Improve this code by reducing the receptiveness of the loops
+     * Checks to see if there are any winning moves on the board. Essentially
+     * all these checks will do is check some directional array of pieces for
+     * equality using a stream.
      *
      * @return If someone has won the game
+     *
+     * @ TODO: 16/10/2017 Make hasWinner one return statement
+     *          This is a difficult decision, I like to do things in one line, I find
+     *          that code done in one displays a level of polish that a lot of programmers
+     *          don't care about. As Blaise Pascal said - "If I had more time I would have
+     *          written a shorter letter."
      */
     boolean hasWinner() {
         Piece piece = tiles[lastMove.x][lastMove.y];
-        int side1 = 0, side2 = 0;
 
-        //Check for left pieces
-        for (int i = lastMove.x; i >= 0; i--) {
-            if (tiles[i][lastMove.y] == piece)
-                side1++;
-        }
-
-        //Check for right pieces
-        for (int i = lastMove.x; i < DIMENSIONS; i++) {
-            if (tiles[i][lastMove.y] == piece)
-                side2++;
-        }
-
-        //Sum the two and take one away (because we counted the middle piece twice)
-        //and check if that spans the whole board
-        if ((side1 + side2 - 1) == DIMENSIONS)
+        if (Arrays.stream(tiles[lastMove.x]).allMatch(piece::equals))
             return true;
 
-        //Return sides to zero
-        side1 = 0;
-        side2 = 0;
-
-        //Check for up pieces
-        for (int i = lastMove.y; i >= 0; i--) {
-            if (tiles[lastMove.x][i] == piece)
-                side1++;
-        }
-
-        //Check for down pieces
-        for (int i = lastMove.y; i < DIMENSIONS; i++) {
-            if (tiles[lastMove.x][i] == piece)
-                side2++;
-        }
-
-        //Sum the two and take one away (because we counted the middle piece twice)
-        //and check if that spans the whole board
-        if ((side1 + side2 - 1) == DIMENSIONS)
+        if (Arrays.stream(getTileColumn(lastMove.y)).allMatch(piece::equals))
             return true;
 
-        //Return sides to zero
-        side1 = 0;
-        side2 = 0;
-
-        //Check for diagonal up-right
-        for (int i = lastMove.x; i < DIMENSIONS; i++) {
-            for (int j = lastMove.y; j < DIMENSIONS; j++) {
-                if (tiles[i][j] == piece)
-                    side1++;
-            }
-        }
-
-        //Check for diagonal down-left
-        for (int i = lastMove.x; i >= 0; i--) {
-            for (int j = lastMove.y; j >= 0; j--) {
-                if (tiles[i][j] == piece)
-                    side2++;
-            }
-        }
-
-        //Check to see if diagonal wins
-        if ((side1 + side2 - 1) == DIMENSIONS)
+        if (Arrays.stream(getDiagonalOne()).allMatch(piece::equals))
             return true;
 
-        //Return sides to zero
-        side1 = 0;
-        side2 = 0;
+        return Arrays.stream(getDiagonalTwo()).allMatch(piece::equals);
+    }
 
-        //Check for diagonal up-left
-        for (int i = lastMove.x; i < DIMENSIONS; i++) {
-            for (int j = lastMove.y; j >= 0; j--) {
-                if (tiles[i][j] == piece)
-                    side1++;
-            }
+    /**
+     * Helper method to get the pieces in one column of an array.
+     *
+     * @param col The column of interest
+     * @return An array containing the column of pieces.
+     */
+    private Piece[] getTileColumn(int col) {
+        Piece[] temp = new Piece[DIMENSIONS];
+        for (int i = 0; i < DIMENSIONS; i++) {
+            temp[i] = tiles[i][col];
         }
+        return temp;
+    }
 
-        //Check for diagonal down-right
-        for (int i = lastMove.x; i >= 0; i--) {
-            for (int j = lastMove.y; j < DIMENSIONS; j++) {
-                if (tiles[i][j] == piece)
-                    side2++;
-            }
+    /**
+     * Returns an array that contains the diagonal pieces from
+     * the top left to the bottom right of the tiles array.
+     *
+     * @return An array from tiles containing the top left to bottom right
+     * diagonal pieces
+     */
+    private Piece[] getDiagonalOne(){
+        Piece[] temp = new Piece[DIMENSIONS];
+        for (int i = 0; i < DIMENSIONS; i++) {
+            temp[i] = tiles[i][i];
         }
+        return temp;
+    }
 
-        //Check to see if diagonal wins
-        return (side1 + side2 - 1) == DIMENSIONS;
+    /**
+     * Returns an array that contains the diagonal pieces from
+     * the top right to the bottom left of the tiles array.
+     *
+     * @return An array from tiles containing the top right to bottom left
+     * diagonal pieces
+     */
+    private Piece[] getDiagonalTwo(){
+        Piece[] temp = new Piece[DIMENSIONS];
+        int j = 0;
+        for (int i = DIMENSIONS - 1; i > 0; i--) {
+            temp[j] = tiles[j][i];
+            j++;
+        }
+        return temp;
     }
 }

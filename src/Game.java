@@ -68,6 +68,7 @@ class Game {
                     done = true;
                     break;
                 case "n":
+                    System.out.println("Thanks for playing!");
                     quit = true;
                     done = true;
                     break;
@@ -95,9 +96,23 @@ class Game {
      * first.
      */
     private void setNewGame() {
-        board = new Board();
+        System.out.println("===== Welcome to Naughts and Crosses =====");
+        System.out.println("This game was created by Angus Clinch");
+
         player1 = new Player(Piece.X, "Crosses");
         player2 = new Player(Piece.O, "Naughts");
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter the name for Player One (Crosses)");
+        player1.setName(scanner.next());
+
+        System.out.println("Please enter the name for Player Two (Naughts)");
+        player2.setName(scanner.next());
+
+        System.out.println("Thank you, now let's play!");
+
+        board = new Board();
         currentPlayer = player1;
     }
 

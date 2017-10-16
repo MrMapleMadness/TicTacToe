@@ -22,4 +22,14 @@ public enum Piece {
     public String getPieceCode() {
         return pieceCode;
     }
+
+    /**
+     * Checks if two pieces are equivalent.
+     *
+     * @param piece The piece to compare
+     * @return If the pieces are equivalent
+     */
+    public boolean equals(Piece piece){
+        return getPieceCode().equals(piece.getPieceCode());
+    }
 }
