@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 public enum Piece {
     BLANK(" "),
     X("X"),
@@ -9,6 +11,7 @@ public enum Piece {
      * Constructs a piece.
      *
      * @param pieceCode The real wold representation of the piece
+     * @author Angus Clinch
      */
     Piece(String pieceCode) {
         this.pieceCode = pieceCode;
@@ -21,6 +24,29 @@ public enum Piece {
      */
     public String getPieceCode() {
         return pieceCode;
+    }
+
+    /**
+     * Returns the image that should be used for each piece.
+     *
+     * @return The image that should be used for each piece
+     * @see Image
+     */
+    public Image getImage() {
+
+        //Image Locations - change depending on the image displayed
+        final String xImage = "img/spire.png";
+        final String oImage = "img/eCase.png";
+        final String bImage = "img/blank.png";
+
+        switch (getPieceCode()) {
+            case "X":
+                return new Image(xImage);
+            case "O":
+                return new Image(oImage);
+            default:
+                return new Image(bImage);
+        }
     }
 
     /**
