@@ -1,17 +1,15 @@
 import java.awt.*;
 import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * Defines a board that is used in the game Tic Tac Toe, this can be a 3 x 3 grid or bigger.
  *
- * @author Angus Clinch
  * @see <a href="https://www.wikiwand.com/en/Tic-tac-toe">Wikepedia article about Tic Tac Toe</a>
  */
 class Board {
 
-    //GUI
-    private Output output;
-    //Logic
     private static final int DIMENSIONS = 3;
     private Piece[][] tiles;
     private Point lastMove;
@@ -20,8 +18,7 @@ class Board {
      * Constructor for this class. It creates a new two dimensional array
      * to store the tile data and generates a clean board.
      */
-    Board(Output output) {
-        this.output = output;
+    Board() {
         tiles = new Piece[DIMENSIONS][DIMENSIONS];
         generateCleanBoard();
     }
@@ -34,16 +31,29 @@ class Board {
      */
     Point getInput() {
         boolean done = false;
-        Point point = new Point();
+        int row = 0, col = 0;
         while (!done) {
-            point = output.getInput(DIMENSIONS);
-            done = checkValid(point);
-            if (!done)
-                output.displayMessage("Sorry those dimensions aren't in the board");
-        }
+            try {
+                Scanner scanner = new Scanner(System.in);
 
-        lastMove = point;
-        return point;
+                System.out.println("Please enter a row from 1 to " + DIMENSIONS);
+                row = scanner.nextInt() - 1;
+
+                System.out.println("Please enter a column from 1 to " + DIMENSIONS);
+                col = scanner.nextInt() - 1;
+
+                if (checkValid(row, col)) {
+                    done = true;
+                } else {
+                    System.out.println("That was an invalid placement!");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Please only enter numbers.");
+            }
+        }
+        lastMove = new Point(row, col);
+        return lastMove;
     }
 
     /**
@@ -57,16 +67,6 @@ class Board {
         return (row >= 0 && row < DIMENSIONS)
                 && (col >= 0 && col < DIMENSIONS)
                 && tiles[row][col] == Piece.BLANK;
-    }
-
-    /**
-     * Checks the validity of the players move.
-     *
-     * @param point The point to check the validity of
-     * @return If the placement of the piece is valid
-     */
-    private boolean checkValid(Point point) {
-        return point != null && checkValid(point.x, point.y);
     }
 
     /**
@@ -99,7 +99,13 @@ class Board {
      * @ TODO: 14/10/2017 Make printBoard a graphical interface
      */
     void printBoard() {
-        output.printBoard(tiles);
+        System.out.println("-------------");
+        System.out.println("| " + tiles[0][0].getPieceCode() + " | " + tiles[0][1].getPieceCode() + " | " + tiles[0][2].getPieceCode() + " |");
+        System.out.println("|---|---|---|");
+        System.out.println("| " + tiles[1][0].getPieceCode() + " | " + tiles[1][1].getPieceCode() + " | " + tiles[1][2].getPieceCode() + " |");
+        System.out.println("|---|---|---|");
+        System.out.println("| " + tiles[2][0].getPieceCode() + " | " + tiles[2][1].getPieceCode() + " | " + tiles[2][2].getPieceCode() + " |");
+        System.out.println("-------------");
     }
 
     /**

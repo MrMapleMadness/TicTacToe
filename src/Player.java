@@ -7,7 +7,6 @@ class Player {
     /**
      * The player that places pieces down.
      *
-     * @author Angus Clinch
      * @param piece The piece that this player will use during the game
      * @param name  The name of the player
      */
