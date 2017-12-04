@@ -28,7 +28,7 @@ class Board {
      * changed to any kind of input as long as it returns a valid point on the board.
      *
      * @return A valid point on the board
-     * @param currentPlayer The player who's turn it is at the moment 
+     * @param currentPlayer The player who's turn it is at the moment
      */
     Point getInput(Player currentPlayer) {
         boolean done = false;
