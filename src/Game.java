@@ -23,14 +23,15 @@ class Game {
 
     /**
      * The main game loop, this will run until the players want to quit.
+     *
      * <p>
-     * <bold>NOTE:<bold/> This is not the individual game, this is multiple games.
+     * Note: This is not the individual game, this is multiple games.
+     * </p>
      */
     private void gameLoop() {
         while (!quit) {
             board.printBoard();
-            System.out.print(currentPlayer.getName() + " ");
-            board.setTile(board.getInput(), currentPlayer.getPiece());
+            board.setTile(board.getInput(currentPlayer), currentPlayer.getPiece());
 
             if (board.hasWinner()) {
                 board.printBoard();

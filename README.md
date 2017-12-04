@@ -49,7 +49,7 @@ implemented the streams to check the diagonals.
 
 *COMPLETE: 16/10/2017*
  
-**@ TODO: 14/10/2017 Improve hasWinner code by reducing the receptiveness of the loops**
+**@ TODO: 14/10/2017 Improve hasWinner code by reducing the repetition of the loops**
  
 Done! Took loops out and moved them to helper methods, these methods
 use loops much less than previously. All they do is create arrays so

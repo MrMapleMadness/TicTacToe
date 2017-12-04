@@ -28,13 +28,16 @@ class Board {
      * changed to any kind of input as long as it returns a valid point on the board.
      *
      * @return A valid point on the board
+     * @param currentPlayer The player who's turn it is at the moment 
      */
-    Point getInput() {
+    Point getInput(Player currentPlayer) {
         boolean done = false;
         int row = 0, col = 0;
         while (!done) {
             try {
                 Scanner scanner = new Scanner(System.in);
+
+                System.out.println(currentPlayer.getName());
 
                 System.out.println("Please enter a row from 1 to " + DIMENSIONS);
                 row = scanner.nextInt() - 1;
